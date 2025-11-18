@@ -1,0 +1,26 @@
+Start with some test cases of both very small and very large numbers:
+
+Small cases:
+
+  Start with:
+    (sqrt 0.01567)
+      returns 0.12525948663327358
+  
+      This is fairly accurate considering:
+        (* (sqrt 0.01567) (sqrt 0.01567))
+          returns: 0.015689938991631243
+
+  Lets go smaller:
+    (sqrt 0.00045879)
+      returns 0.03599294094803191
+
+      This is completely useless considering:
+        (* (sqrt 0.00045879) (sqrt 0.00045879))
+          returns: 0.0012954917980885123
+
+  When the numbers get small, below 0.001, as per the good-enough? definition, the function becomes useless as what is considered good enought is a larger number than what is being calculated, so the function is returning the quess as soon as it is below this number, even if the number when squared does not come close to the number we are looking for the square root of. 
+
+Large cases:
+(sqrt 776555)
+(sqrt 83492773)
+(sqrt 9458887625)
