@@ -21,6 +21,26 @@ Small cases:
   When the numbers get small, below 0.001, as per the good-enough? definition, the function becomes useless as what is considered good enought is a larger number than what is being calculated, so the function is returning the quess as soon as it is below this number, even if the number when squared does not come close to the number we are looking for the square root of. 
 
 Large cases:
-(sqrt 776555)
-(sqrt 83492773)
-(sqrt 9458887625)
+
+  Start with 6 digits:
+    (sqrt 776555)
+      returns: 881.2235811642811
+        all good
+
+  Bigger with 8 digits:
+    (sqrt 83492773)
+      returns: 9137.437988852014
+        all good
+
+  Even Bigger with 10 digits:
+    (sqrt 9458887625)
+      returns 97256.81274337546
+        all good
+
+  Too big with 15 digits:
+    (sqrt 997556732879999)
+      does not return
+
+On further analysis, the function stops working somewhere around 999,999,999,000,000, i believe this is an issue with the recursive function which checks good enough running out of memory.
+
+
