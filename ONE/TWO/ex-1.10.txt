@@ -202,18 +202,18 @@ the previous h(n) like so:
 2^16    = 65536
 2^65536 = a number with 19,729 decimal digits, FUCKING HUGE 
 
-we can look at this a different way if we think about the n in h(n):
+we can look at this a different way if we think about the n in h(n) lets start
+with h(3) which is 2^4, which is 16, we also know that 2^2^2 = 16, so 2^2 n 
+times is also 16, lets apply this:
 
-lets start with h(3) which is 2^4, which is 16, we also know that 2^2^2 = 16,
-so 2^2 n times is also 16, lets apply this to h(4)
+h(2)  = 2^2     = 2^2
+h(3)  = 2^4     = 2^(2^2)
+h(4)  = 2^16    = 2^(2^(2^2)
+h(5)  = 2^65536 = 2^(2^(2^(2^2)))
 
-2^2^2^2 this is indeed 65536
+and so on ad-nauseum
 
-the next number is to big to check, so i will have to take for granted that this
-is the formula:
-
-i dont know how to writ it but:
-
-h(n) = 2^2^...n times
+This formula uses the power tower to represent:
+h(n) = 2↑↑n
 
 
