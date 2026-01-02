@@ -4,31 +4,48 @@ f(n) = n if n < 3, f(n-1) + f(n-2) + f(n-2) if n >= 3
 
 ----------------------------------------------------------
 
-Recursive process:
+Recursive process, very easily done:
 
 (define (f n)
   (if (< n 3) 
       n-2
       (+ (f (- n 1))
-         (f (- n 2))
-         (f (- n 3)))))
+         (* 2 (f (- n 2)))
+         (* 3 (f (- n 3))))))
 
 ----------------------------------------------------------
 
-Iterative process:
+Iterative process, slightly more difficult:
+
+To make an iterative procedure we need to have all the infomation
+required in the recursive call to the procedure.
+
+To contain all the infomation we need a initial function which only
+takes n as input and calls an iterative process with some initialized
+values to represent each recursive function call and a counter.
+
+
+    ; T T T  : 0 : we can just return our count
+    ; T T F  : 1 : we need  
+    ; T F T  : 2
+    ; T F F  : 3
+    ; F T T  : 4
+    ; F T F  : 5
+    ; F F T  : 6
+    ; F F F  : 7
+
 
 (define (f n)
   (f-iter n n n 0)???
 
 (define (f-iter x y z count)
-  (cond (and (< x 3)                    ; T T T : 0
+  (cond (and (< x 3)
              (< y 3) 
              (< z 3)) 
                       (+ x y z count)
-                                        ; T T F  : 1
-                                        ; T F T  : 2
-                                        ; T F F  : 3
-                                        ; F T T  : 4
-                                        ; F T F  : 5
-                                        ; F F T  : 6
-                                        ; F F F  : 7
+        (and (< x 3)
+             (< y 3)
+             (=> z 3))
+                      (f-iter x 
+                              y 
+                              (+ )
