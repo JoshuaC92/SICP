@@ -56,11 +56,72 @@ once more round the sun (cant line the colums up on this, too wide):
 (+ 11                                                            8                                       6)
 25
 
+Looking at these runs we can see that we need to track 3 values per call:
+
+  1(x). (f n)
+  2(y). (f (- 1 n))
+  3(z). (f (- 2 n))
+
+This is shown by the examples as follows:
+
+In (f 3):
+  x = (f 2)
+  y = (* 2 (f 1))
+  z = (* 3 (f 0))
+
+In (f 4):
+  x = (f 3)
+  y = (* 2 (f 2))
+  z = (* 3 (f 1))
+
+and in (f 5):
+  x = (f 4)
+  y = (* 2 (f 3))
+  z = (* 3 (f 2))
+
+These 3 values are added together to get the next valu.
+
+The next part isnt super obvious, but since this is addition and multiplication order doesnt matter, so if we think about it we can start of at the bottom, and work our way up using a counter.
+
+Lets ititialize the function with the values for the 2 possible cases being n < 3 or n > 3, where we either return n if it is less than 3 or initialize our interative process if not:
 
 (define (f n)
   (if (< n 3)
       n
       (f-iter 2 1 0 n)))
 
-(define (f-iter accumulator previous z n-counter)
+The reason we initialize the values for the iterator to 2 1 and 0, is because we begin with (f 3) and we can see from above that (f 3) requires us to perform primitive multiplication on f(2) f(1) and f(0), which all return n, that being 2, 1 and 0.
 
+So in each iteration, we can say that:
+
+  x is equal to (f n)
+  y is equal to (f (- n 1))
+  z is equal to (f (- n 2))
+
+And in each call to the iterator, we need to either return the most recent iteration if n < 3 or x (most recent) is sent to the next iteration as y and y is sent to the next iteration as z, and z is discarded, no longer required to be remembered in the next itreation.
+
+Now we can build the iterative process by checking the counter, to see when it has hit below 3, and return a value instead of calling itself with new values.
+
+
+
+(define (f-iter x y z n-counter)
+  (if (< n-counter 3)
+      x
+      (f-iter (+ x (* 2 y) (* 3 z))
+              x
+              y
+              (- n-counter 1))))
+
+How does this look:
+
+(f 5)
+
+(f-iter 2 1 0 5)
+(f-iter 3 2 1 4)
+(f-iter 11 3 2 3)
+(f-iter 25 11 3 2)
+25
+
+and its done!
+
+The biggest thing that we are changing here is that we are starting the process at the smallest case and working UP!
