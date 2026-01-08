@@ -73,13 +73,36 @@ Lets test with element number 19, which should give us row 6.
 (-1 ± √(152)) / 2
 (-1 ± √(152)) / 2
 (-1 ± 12.328828006) / 2
+5.664414
 
-Row must be a positive int, so we need to use: 
+We need to add 1 to this number and use the floor function to get the row number containing element n. The formula will look like so:
 
-11.328822801 / 2
-row = 5.6644
+row = floor(((-1 + √(1 - 4*(-2*n))) / 2) + 1)
+
+Once we have the row we can use a formula to work out how many elements have come before that row, by using a triangular number formula:
+
+#-of-prev-elements = row * (row -1) / 2
+
+and then simply subtract this from n to get the amount of elements in that row up to n:
+
+col = n - ((row - 1) * row / 2)
+
+We can now use these two formula to create scheme functions which will take n and produce the row and col perands for the pascals triangle function!
+
+Here is some psuedo code:
+
+(define (row n)
+  (+ 1 
+     (floor (/ (+ -1
+                  (sqrt (- 1
+                           (* 4 (* -2 n)))))
+               2))))
+
+(define (col r n)
+  (- n
+     (/ (* (- r 1) r)
+        2)))
+
+We can now start working on the formula for pascals triangle.
 
 
-
-row = floor((-1 + √(1 + 8n)) / 2)
-col = n - row(row+1)/2
