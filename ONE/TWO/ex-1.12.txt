@@ -105,4 +105,42 @@ Here is some psuedo code:
 
 We can now start working on the formula for pascals triangle.
 
+Starting with a function to convert n into a row and col:
+
+(define (pascals n)
+  (pascals-main (row n) (col (row n) n)))
+
+Now lets start with an easy case:
+
+(pascals 1)
+(pascals 1 1)
+
+Should return 1. So we can say that if col or row are equal to 1 than we should return 1.
+
+We also know that the row # is equal to the last element for that row, so if row and col are equal then we return 1.
+
+The first case for our function should be:
+
+((or (= row 1) (= col 1) (= row col)) 1)
+
+This will handle everything from (pascals 1) up to (pascals 4).
+
+For (pascals 5) we need it to return 2. 
+
+If we think about this visualy, we can say that pascal 5, should be the previous row, with the same colum, and -1 column, added together, so:
+
+(+ (pascals-main (- row 1) (- col 1))
+   (pascals-main (- row 1) col))
+
+putting together each of these we get the following:
+
+(define (pascals-main row col)
+  (cond ((or (= row 1) (= col 1) (= row col)) 1)
+        (else (+ (pascals-main (- row 1) (- col 1))
+                 (pascals-main (- row 1) col)))))
+
+Lets work through this for (pascals 5):
+
+
+
 
