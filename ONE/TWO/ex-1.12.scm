@@ -1,10 +1,9 @@
 #lang sicp
 
 (define (row n)
-     (ceiling (/ (+ -1
-                  (sqrt (- 1
-                           (* 8 n))))
-               2)))
+      (ceiling (/ (+ -1
+                     (sqrt (+ 1 (* 8 n))))
+                  2)))
 
 (define (col r n)
   (- n
