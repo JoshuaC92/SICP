@@ -84,7 +84,7 @@ Lets test with element number 19, which should give us row 6.
 
 We need to add 1 to this number and use the floor function to get the row number containing element n. The formula will look like so:
 
-row = floor(((-1 + √(1 - 4*(-2*n))) / 2) + 1)
+row = floor(((-1 + √(1 + 8 * n)) / 2) + 1)
 
 Once we have the row we can use a formula to work out how many elements have come before that row, by using a triangular number formula:
 
