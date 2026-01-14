@@ -4,6 +4,12 @@ Hint: Let ψ=(1−√5)/2.
 
 Use induction and the definition of the Fibonacci numbers (see 1.2.2) to prove that Fib(n)=(φⁿ−ψⁿ)/√5.
 
+Fun fact:
+  φ is called phi, the greek letter and represents the golden ratio
+  ψ is called psi, the greek letter and in this case represents the conjugate of the golden ratio 
+
+
+
 -------------------------------------------------------------------------------------
 
 I have no idea how to answer this. 
