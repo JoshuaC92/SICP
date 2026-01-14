@@ -1,0 +1,34 @@
+Prove that Fib(n) is the closest integer to φⁿ/√5, where φ = (1 + √5)/2. 
+
+Hint: Let ψ=(1−√5)/2. 
+
+Use induction and the definition of the Fibonacci numbers (see 1.2.2) to prove that Fib(n)=(φⁿ−ψⁿ)/√5.
+
+-------------------------------------------------------------------------------------
+
+I have no idea how to answer this. 
+
+Where does ψ=(1−√5)/2 come from, and why is it important?
+
+    It seems that φ and ψ are related:
+        
+        φ = (1 + √5)/2 = 1.618033989
+        ψ = (1 − √5)/2 = -0.618033989
+
+
+Reading walkthrough's online i have found that:
+
+Start with the solution to Fib(n):
+
+    Fib(n)  =   Fib(n - 1) + Fib(n - 2)
+
+Substitute this with the statement that from the question Fib(n)=(φⁿ−ψⁿ)/√5 :
+
+    (φⁿ−ψⁿ)/√5  =   ((φⁿ⁻¹-ψⁿ⁻¹)/√5) + ((φⁿ⁻²-ψⁿ⁻²)/√5)  
+
+Simplify:
+
+    φⁿ − ψⁿ  =   (φⁿ⁻¹ − ψⁿ⁻¹) + (φⁿ⁻² − ψⁿ⁻²)
+
+
+
