@@ -28,7 +28,8 @@ I will use only 3 denominations to save space:
 
 What are the orders of growth of space and number of steps used by this process as the amount to be changed increases?
 
-Space: As the process for cc is tree-recursive we can say that the amount of space required for the process will be proportional to the depth of the tree. In other words, it will be a linear amount of space. 
+Space: 
+As the process for cc is tree-recursive we can say that the amount of space required for the process will be proportional to the depth of the tree. So as the amount or denominations increases, the space required will increase in linearly to this number. 
 
 Number of steps: Each time the cc is called, unless either the amont or kinds-of-kinds is <= than 0 it will call itself twice.
 
