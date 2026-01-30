@@ -16,12 +16,28 @@
 
 (expt 3 1)
 (* 3 (expt 3 0))
+(* 3 1)
+3
 
 (expt 3 2)
 (* 3 (expt 3 1))
 (* 3 (* 3 (expt 3 0)))
+(* 3 (* 3 1))
+(* 3 3)
+9
 
-;etc
+(expt 3 5)
+(* 3 (expt 3 4))
+(* 3 (* 3 (expt 3 3)))
+(* 3 (* 3 (* 3 (expt 3 2))))
+(* 3 (* 3 (* 3 (* 3 (expt 3 1)))))
+(* 3 (* 3 (* 3 (* 3 (* 3 (expt 3 0)))))
+(* 3 (* 3 (* 3 (* 3 (* 3 1)))))
+(* 3 (* 3 (* 3 (* 3 3))))
+(* 3 (* 3 (* 3 9)))
+(* 3 (* 3 27))
+(* 3 81)
+243
 
 ; We can define a iterative process version of expt like so:
 
@@ -46,3 +62,24 @@
 
 ; Θ(n) steps
 ; Θ(1) space
+
+(define (fast-expt b n)
+  (cond ((= n 0) 1)
+        ((even? n) (square (fast-expt b (/ n 2))))
+        (else (* b (fast-expt b (- n 1))))))
+
+(define (even? n)
+  (= (remainder n 2) 0))
+
+(fast-expt 3 5)
+(* 3 (fast-expt 3 4))
+(* 3 (square (fast-expt 3 2)))
+(* 3 (square (square (fast-expt 3 1))))
+(* 3 (square (square (* 3 (fast-expt 3 0)))))
+(* 3 (square (square (* 3 1)))))
+(* 3 (square (square 3)))
+(* 3 (square 9))
+(* 3 81)
+243
+
+;when raising 3 to the 5th power, fast-expt is 1 step shorter and 1 space shorter
